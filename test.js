@@ -1,4 +1,4 @@
-AsyncVoterApiClient = require('./index')
+AsyncVoterApiClient = require('./client')
 
 var client = new AsyncVoterApiClient();
 
