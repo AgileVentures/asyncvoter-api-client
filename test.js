@@ -38,9 +38,12 @@ var vote = {
   size: '3'
 }
 
-client.createVote(storyId, vote, function(err, data, response){
+// client.createVote(storyId, vote, function(err, data, response){
+//   console.log(data);
+//   console.log('\n\nStatus: ' + response.statusCode);
+// });
+
+client.getVotesForStory(storyId, function(err, data, response){
   console.log(data);
   console.log('\n\nStatus: ' + response.statusCode);
 });
-
-

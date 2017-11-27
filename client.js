@@ -78,6 +78,19 @@ var client = function () {
     });
   };
 
+  this.getVotesForStory = function (storyId, callback) {
+    var url = this.baseUrl + '/stories';
+    var args = {};
+    url = url + '/' + storyId + '/votes';
+    this.restClient.get(url, args, function (data, response) {
+      if (response.statusCode == 200) {
+        callback(null, data, response)
+      } else {
+        callback(new Error('There was and issue'));
+      }
+    });
+  };
+
 };
 
 module.exports = client;
