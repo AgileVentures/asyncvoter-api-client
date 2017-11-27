@@ -18,6 +18,19 @@ var client = function () {
     });
   };
 
+  this.getStory = function (storyId, callback) {
+    var url = this.baseUrl + '/stories';
+    var args = {};
+    url = url + '/' + storyId;
+    this.restClient.get(url, args, function (data, response) {
+      if (response.statusCode == 200) {
+        callback(null, data, response)
+      } else {
+        callback(new Error('There was and issue'));
+      }
+    });
+  };
+
   this.createStory = function (fields, callback) {
     var url = this.baseUrl + '/stories';
     var args = {
