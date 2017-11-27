@@ -14,18 +14,23 @@ var story = {
 //   console.log('\n\nStatus: ' + response.statusCode);
 // });
 
-client.getAllStories(function(err, data, response){
-  console.log(data);
-  console.log('\n\nStatus: ' + response.statusCode);
-});
+// client.getAllStories(function(err, data, response){
+//   console.log(data);
+//   console.log('\n\nStatus: ' + response.statusCode);
+// });
 
 var storyId = '5a1c09fb9904c700a3d3628a';
 
-client.getStory(storyId, function(err, data, response){
+// client.getStory(storyId, function(err, data, response){
+//   console.log(data);
+//   console.log('\n\nStatus: ' + response.statusCode);
+// });
+
+var story = {name: 'Create new API Client for AsyncVoter',size: '3'};
+
+client.updateStory(storyId, story, function(err, data, response){
   console.log(data);
   console.log('\n\nStatus: ' + response.statusCode);
 });
-
-
 
 
