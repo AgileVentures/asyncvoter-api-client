@@ -31,10 +31,10 @@ var client = function () {
     });
   };
 
-  this.createStory = function (fields, callback) {
+  this.createStory = function (story, callback) {
     var url = this.baseUrl + '/stories';
     var args = {
-      data: { name: fields.name, source: fields.source, size: fields.size, url: fields.url },
+      data: story,
       headers: { "Content-Type": "application/json" }
     };
     this.restClient.post(url, args, function (data, response) {
