@@ -26,9 +26,19 @@ var storyId = '5a1c09fb9904c700a3d3628a';
 //   console.log('\n\nStatus: ' + response.statusCode);
 // });
 
-var story = {name: 'Create new API Client for AsyncVoter',size: '3'};
+var story = {name: 'Create new API Client for AsyncVoter',size: '3', userId: '@brentvardy'};
 
-client.updateStory(storyId, story, function(err, data, response){
+// client.updateStory(storyId, story, function(err, data, response){
+//   console.log(data);
+//   console.log('\n\nStatus: ' + response.statusCode);
+// });
+
+var vote = {
+  userId: '@testuser',
+  size: '3'
+}
+
+client.createVote(storyId, vote, function(err, data, response){
   console.log(data);
   console.log('\n\nStatus: ' + response.statusCode);
 });

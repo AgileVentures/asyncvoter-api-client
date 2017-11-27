@@ -62,6 +62,22 @@ var client = function () {
     });
   };
 
+  this.createVote = function (storyId, fields, callback) {
+    var url = this.baseUrl + '/stories';
+    url = url + '/' + storyId + '/votes';
+    var args = {
+      data: fields,
+      headers: { "Content-Type": "application/json" }
+    };
+    this.restClient.post(url, args, function (data, response) {
+      if (response.statusCode == 200) {
+        callback(null, data, response)
+      } else {
+        callback(new Error('There was and issue'));
+      }
+    });
+  };
+
 };
 
 module.exports = client;
