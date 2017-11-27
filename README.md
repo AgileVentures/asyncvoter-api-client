@@ -1,6 +1,6 @@
 # asyncvoter-api-client
 
-Node JS Client for the Agile [Ventures Async Voter API](https://github.com/AgileVentures/asyncvoter-api).
+Node JS Client for the [Agile Ventures Async Voter API](https://github.com/AgileVentures/asyncvoter-api).
 
 :warning: This module is still being developed and is not currently production ready.
 
