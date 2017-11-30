@@ -4,7 +4,7 @@
   "description": "Client to work with Agile Ventures AsyncVoter API service",
   "main": "client.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha spec.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,9 @@
   "homepage": "https://github.com/vardyb/asyncvoter-api-client#readme",
   "dependencies": {
     "node-rest-client": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
   }
 }
