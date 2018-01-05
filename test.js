@@ -47,3 +47,7 @@ client.getVotesForStory(storyId, function(err, data, response){
   console.log(data);
   console.log('\n\nStatus: ' + response.statusCode);
 });
+
+console.log(client.baseUrl)
+client.setBaseUrl('http://api.example.com')
+console.log(client.baseUrl)

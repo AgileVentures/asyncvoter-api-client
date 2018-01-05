@@ -6,6 +6,10 @@ var client = function () {
   this.restClient = new RestClient();
   this.baseUrl = 'http://api-production.asyncvoter.agileventures.org';
 
+  this.setBaseUrl= function(url) {
+    this.baseUrl = url
+  };
+
   this.getAllStories = function (callback) {
     var url = this.baseUrl + '/stories';
     var args = {};
