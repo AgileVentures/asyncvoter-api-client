@@ -3,11 +3,16 @@ var RestClient = require('node-rest-client').Client;
 var restClient = new RestClient();
 
 var client = function () {
+  var defaultBaseUrl = 'http://api-production.asyncvoter.agileventures.org'
   this.restClient = new RestClient();
-  this.baseUrl = 'http://api-production.asyncvoter.agileventures.org';
+  this.baseUrl = defaultBaseUrl;
 
   this.setBaseUrl= function(url) {
     this.baseUrl = url
+  };
+
+  this.resetBaseUrl = function(){
+    this.baseUrl = defaultBaseUrl
   };
 
   this.getAllStories = function (callback) {

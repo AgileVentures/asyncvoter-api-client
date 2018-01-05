@@ -18,5 +18,10 @@ describe('testing base URL functionality', function(){
   it('should update base URL to be development api URL', function(){
     client.setBaseUrl('http://api-test.asyncvoter.agileventures.org');
     expect(client.baseUrl).to.equal('http://api-test.asyncvoter.agileventures.org');
-  })
+  });
+
+  it('should reset base URl to be the default production api URL', function(){
+    client.resetBaseUrl();
+    expect(client.baseUrl).to.equal('http://api-production.asyncvoter.agileventures.org');
+  });
 });
