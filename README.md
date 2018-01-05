@@ -14,6 +14,21 @@ AsyncVoterApiClient = require('asyncvoter-api-client')
 var client = new AsyncVoterApiClient();
 ```
 
+## Update API base URL
+By default the client will make requests to the production API endpoint, however the endpoint that
+is used can be updated using the `setBaseUrl` option.
+
+```javascript
+client.setBaseUrl('https://new.api.endpoint.com');
+```
+
+## Reset API Base URL
+The base URL can be reset back to the production API endpoint at any time by using the `resetBaseUrl` option.
+
+```javascript
+client.resetBaseUrl();
+```
+
 ## Stories
 
 **Listing all stories**
