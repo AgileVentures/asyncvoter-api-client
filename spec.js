@@ -18,6 +18,7 @@ describe('testing base URL functionality', function () {
     });
 
     it('should reset base URL to be the default production api URL', function () {
+        client.setBaseUrl('http://test.com');
         client.resetBaseUrl();
         expect(client.baseUrl).to.equal('http://api-production.asyncvoter.agileventures.org');
     });
@@ -27,7 +28,8 @@ describe('testing creating a new voter story', function () {
     var testResponse, testData, testErr;
     var newStory = {
         name: 'Create API Client',
-        source: '@async_voter',
+        source: '#async_voter',
+        userId: '@test_user',
         url: 'https://example.com/create_api_client'
     };
 
@@ -60,5 +62,9 @@ describe('testing creating a new voter story', function () {
 
     it('should return a story with correct url', function () {
         expect(testData.url).to.equal(newStory.url);
+    });
+
+    it('should return a story with correct userId', function () {
+        expect(testData.userId).to.equal(newStory.userId);
     });
 });
