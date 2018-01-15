@@ -68,3 +68,31 @@ describe('testing creating a new voter story', function () {
         expect(testData.userId).to.equal(newStory.userId);
     });
 });
+
+describe('testing updating a voter story', function () {
+   var storyId;
+    var newStory = {
+        name: 'Update API Client',
+        source: '#async_voter_test',
+        userId: '@test_user',
+        url: 'https://example.com/update_api_client'
+    };
+   before(function (done) {
+       this.timeout(2500);
+       client.setBaseUrl('http://api-test.asyncvoter.agileventures.org');
+       client.createStory(newStory, function (err, data, response) {
+           storyId = data._id;
+           done();
+       });
+   });
+
+    it('should update story with a size and return a code 200', function (done) {
+        var updates = {size: '1'};
+        client.updateStory(storyId, updates, function(err, data, response) {
+            expect(response.statusCode).to.equal(200);
+            expect(data.size).to.equal('1');
+            done();
+        });
+    });
+
+});
