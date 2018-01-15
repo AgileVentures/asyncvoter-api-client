@@ -95,4 +95,13 @@ describe('testing updating a voter story', function () {
         });
     });
 
+    it('should change the existing size of a story and return a code 200', function (done) {
+        var updates = {size: '3'};
+        client.updateStory(storyId, updates, function(err, data, response) {
+            expect(response.statusCode).to.equal(200);
+            expect(data.size).to.equal('3');
+            done();
+        });
+    });
+
 });
