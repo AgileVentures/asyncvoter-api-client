@@ -1,6 +1,6 @@
 require('mocha')
 var expect = require('chai').expect;
-AsyncVoterApiClient = require('./client')
+AsyncVoterApiClient = require('../../client')
 var client = new AsyncVoterApiClient();
 
 describe('testing base URL functionality', function () {
