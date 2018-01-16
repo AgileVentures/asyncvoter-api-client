@@ -70,25 +70,25 @@ describe('testing creating a new voter story', function () {
 });
 
 describe('testing updating a voter story', function () {
-   var storyId;
+    var storyId;
     var newStory = {
         name: 'Update API Client',
         source: '#async_voter_test',
         userId: '@test_user',
         url: 'https://example.com/update_api_client'
     };
-   before(function (done) {
-       this.timeout(2500);
-       client.setBaseUrl('http://api-test.asyncvoter.agileventures.org');
-       client.createStory(newStory, function (err, data, response) {
-           storyId = data._id;
-           done();
-       });
-   });
+    before(function (done) {
+        this.timeout(2500);
+        client.setBaseUrl('http://api-test.asyncvoter.agileventures.org');
+        client.createStory(newStory, function (err, data, response) {
+            storyId = data._id;
+            done();
+        });
+    });
 
     it('should update story with a size and return a code 200', function (done) {
         var updates = {size: '1'};
-        client.updateStory(storyId, updates, function(err, data, response) {
+        client.updateStory(storyId, updates, function (err, data, response) {
             expect(response.statusCode).to.equal(200);
             expect(data.size).to.equal('1');
             done();
@@ -97,9 +97,78 @@ describe('testing updating a voter story', function () {
 
     it('should change the existing size of a story and return a code 200', function (done) {
         var updates = {size: '3'};
-        client.updateStory(storyId, updates, function(err, data, response) {
+        client.updateStory(storyId, updates, function (err, data, response) {
             expect(response.statusCode).to.equal(200);
             expect(data.size).to.equal('3');
+            done();
+        });
+    });
+
+});
+
+describe('testing getting a voter story', function () {
+    var storyId;
+    var newStory = {
+        name: 'Get API Story',
+        source: '#async_voter_story',
+        userId: '@story_user',
+        size: '2',
+        url: 'https://example.com/get_api_story'
+    };
+    before(function (done) {
+        this.timeout(2500);
+        client.setBaseUrl('http://api-test.asyncvoter.agileventures.org');
+        client.createStory(newStory, function (err, data, response) {
+            storyId = data._id;
+            done();
+        });
+    });
+
+    it('should return a code 200', function (done) {
+        client.getStory(storyId, function (err, data, response) {
+            expect(response.statusCode).to.equal(200);
+            done();
+        });
+    });
+
+    it('should return a null error', function (done) {
+        client.getStory(storyId, function (err, data, response) {
+            expect(err).to.equal(null);
+            done();
+        });
+    });
+
+    it('should return a story with correct name', function (done) {
+        client.getStory(storyId, function (err, data, response) {
+            expect(data.name).to.equal(newStory.name);
+            done();
+        });
+    });
+
+    it('should return a story with correct source', function (done) {
+        client.getStory(storyId, function (err, data, response) {
+            expect(data.source).to.equal(newStory.source);
+            done();
+        });
+    });
+
+    it('should return a story with correct userId', function (done) {
+        client.getStory(storyId, function (err, data, response) {
+            expect(data.userId).to.equal(newStory.userId);
+            done();
+        });
+    });
+
+    it('should return a story with correct size', function (done) {
+        client.getStory(storyId, function (err, data, response) {
+            expect(data.size).to.equal(newStory.size);
+            done();
+        });
+    });
+
+    it('should return a story with correct url', function (done) {
+        client.getStory(storyId, function (err, data, response) {
+            expect(data.url).to.equal(newStory.url);
             done();
         });
     });
