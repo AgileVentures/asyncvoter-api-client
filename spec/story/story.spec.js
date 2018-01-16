@@ -174,3 +174,38 @@ describe('testing getting a voter story', function () {
     });
 
 });
+
+describe('testing get all stories', function () {
+    before(function () {
+        this.timeout(2500);
+        client.setBaseUrl('http://api-test.asyncvoter.agileventures.org');
+    });
+
+    it('should return a code 200', function (done) {
+        client.getAllStories(function (err, data, response) {
+            expect(response.statusCode).to.equal(200);
+            done();
+        });
+    });
+
+    it('should return a null error', function (done) {
+        client.getAllStories(function (err, data, response) {
+            expect(err).to.equal(null);
+            done();
+        });
+    });
+
+    it('should return an array', function (done) {
+        client.getAllStories(function (err, data, response) {
+            expect(data).to.be.an('array');
+            done();
+        });
+    });
+    it('should return a story object with valid keys', function (done) {
+        client.getAllStories(function (err, data, response) {
+            expect(data[0]).to.have.include.keys('_id', 'updatedAt', 'createdAt', 'name', 'url');
+            done();
+        });
+    });
+
+});
