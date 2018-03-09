@@ -1,5 +1,5 @@
 var RestClient = require('node-rest-client').Client;
-const JSON = require('circular-json');
+// const JSON = require('circular-json');
 var restClient = new RestClient();
 
 var client = function () {
@@ -22,7 +22,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('get all stories failed on ' + this.baseUrl + ' - ' + JSON.stringify(response) ));
+        callback(new Error('get all stories failed on ' + this.baseUrl + ' - ' + response.statusCode ));
       }
     });
   };
@@ -35,7 +35,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('failed to get story on ' + this.baseUrl + ' - ' + JSON.stringify(response) ));
+        callback(new Error('failed to get story on ' + this.baseUrl + ' - ' + response.statusCode ));
       }
     });
   };
@@ -50,7 +50,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('failed to create story on ' + this.baseUrl + ' - ' + JSON.stringify(response) ));
+        callback(new Error('failed to create story on ' + this.baseUrl + ' - ' + response.statusCode ));
       }
     });
   };
@@ -66,7 +66,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('failed to update story on ' + this.baseUrl + ' - ' + JSON.stringify(response) ));
+        callback(new Error('failed to update story on ' + this.baseUrl + ' - ' + response.statusCode ));
       }
     });
   };
@@ -82,7 +82,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('failed to create vote on ' + this.baseUrl + ' - ' + JSON.stringify(response) ));
+        callback(new Error('failed to create vote on ' + this.baseUrl + ' - ' + response.statusCode ));
       }
     });
   };
@@ -95,7 +95,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('failed to get votes for story on ' + this.baseUrl + ' - ' + JSON.stringify(response) ));
+        callback(new Error('failed to get votes for story on ' + this.baseUrl + ' - ' + response.statusCode ));
       }
     });
   };
