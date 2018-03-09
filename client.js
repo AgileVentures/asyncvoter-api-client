@@ -22,7 +22,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('get all stories failed on ' + this.baseUrl + ' - ' + response.statusCode ));
+        callback(new Error('get all stories failed on ' + url + ' - ' + response.statusCode ));
       }
     });
   };
@@ -35,7 +35,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('failed to get story on ' + this.baseUrl + ' - ' + response.statusCode ));
+        callback(new Error('failed to get story on ' + url + ' - ' + response.statusCode ));
       }
     });
   };
@@ -50,7 +50,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('failed to create story on ' + this.baseUrl + ' - ' + response.statusCode ));
+        callback(new Error('failed to create story on ' + url + ' - ' + response.statusCode ));
       }
     });
   };
@@ -66,7 +66,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('failed to update story on ' + this.baseUrl + ' - ' + response.statusCode ));
+        callback(new Error('failed to update story on ' + url + ' - ' + response.statusCode ));
       }
     });
   };
@@ -82,7 +82,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('failed to create vote on ' + this.baseUrl + ' - ' + response.statusCode ));
+        callback(new Error('failed to create vote on ' + url + ' - ' + response.statusCode ));
       }
     });
   };
@@ -95,7 +95,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('failed to get votes for story on ' + this.baseUrl + ' - ' + response.statusCode ));
+        callback(new Error('failed to get votes for story on ' + url + ' - ' + response.statusCode ));
       }
     });
   };
