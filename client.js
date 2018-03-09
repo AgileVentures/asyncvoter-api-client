@@ -50,7 +50,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('There was and issue'));
+        callback(new Error('failed to create story on ' + this.baseUrl + ' - ' + JSON.stringify(response) ));
       }
     });
   };
