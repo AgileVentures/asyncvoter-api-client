@@ -22,7 +22,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('There was and issue'));
+        callback(new Error('get all stories failed on ' + this.baseUrl + ' - ' + JSON.stringify(response) ));
       }
     });
   };
@@ -35,7 +35,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('There was and issue'));
+        callback(new Error('failed to get story on ' + this.baseUrl + ' - ' + JSON.stringify(response) ));
       }
     });
   };
@@ -66,7 +66,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('There was and issue'));
+        callback(new Error('failed to update story on ' + this.baseUrl + ' - ' + JSON.stringify(response) ));
       }
     });
   };
@@ -82,7 +82,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('There was and issue'));
+        callback(new Error('failed to create vote on ' + this.baseUrl + ' - ' + JSON.stringify(response) ));
       }
     });
   };
@@ -95,7 +95,7 @@ var client = function () {
       if (response.statusCode == 200) {
         callback(null, data, response)
       } else {
-        callback(new Error('There was and issue'));
+        callback(new Error('failed to get votes for story on ' + this.baseUrl + ' - ' + JSON.stringify(response) ));
       }
     });
   };
