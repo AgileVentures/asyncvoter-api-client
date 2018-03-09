@@ -1,5 +1,5 @@
 var RestClient = require('node-rest-client').Client;
-
+const JSON = require('circular-json');
 var restClient = new RestClient();
 
 var client = function () {
