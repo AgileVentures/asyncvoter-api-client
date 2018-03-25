@@ -87,7 +87,7 @@ describe('testing updating a voter story', function () {
     });
 
     it('should update story with a size and return a code 200', function (done) {
-        var updates = {size: '1'};
+        var updates = { size: '1' };
         client.updateStory(storyId, updates, function (err, data, response) {
             expect(response.statusCode).to.equal(200);
             expect(data.size).to.equal('1');
@@ -96,7 +96,7 @@ describe('testing updating a voter story', function () {
     });
 
     it('should change the existing size of a story and return a code 200', function (done) {
-        var updates = {size: '3'};
+        var updates = { size: '3' };
         client.updateStory(storyId, updates, function (err, data, response) {
             expect(response.statusCode).to.equal(200);
             expect(data.size).to.equal('3');
@@ -108,6 +108,9 @@ describe('testing updating a voter story', function () {
 
 describe('testing getting a voter story', function () {
     var storyId;
+    var call_response;
+    var call_data;
+    var call_err;
     var newStory = {
         name: 'Get API Story',
         source: '#async_voter_story',
@@ -115,97 +118,80 @@ describe('testing getting a voter story', function () {
         size: '2',
         url: 'https://example.com/get_api_story'
     };
+
     before(function (done) {
         this.timeout(2500);
         client.setBaseUrl('http://api-test.asyncvoter.agileventures.org');
         client.createStory(newStory, function (err, data, response) {
             storyId = data._id;
-            done();
+            client.getStory(storyId, function (err, data, response) {
+                call_response = response;
+                call_data = data;
+                call_err = err;
+                done();
+            });
         });
     });
 
-    it('should return a code 200', function (done) {
-        client.getStory(storyId, function (err, data, response) {
-            expect(response.statusCode).to.equal(200);
-            done();
-        });
+    it('should return a code 200', function () {
+        expect(call_response.statusCode).to.equal(200);
     });
 
-    it('should return a null error', function (done) {
-        client.getStory(storyId, function (err, data, response) {
-            expect(err).to.equal(null);
-            done();
-        });
+    it('should return a null error', function () {
+        expect(call_err).to.equal(null);
     });
 
-    it('should return a story with correct name', function (done) {
-        client.getStory(storyId, function (err, data, response) {
-            expect(data.name).to.equal(newStory.name);
-            done();
-        });
+    it('should return a story with correct name', function () {
+        expect(call_data.name).to.equal(newStory.name);
     });
 
-    it('should return a story with correct source', function (done) {
-        client.getStory(storyId, function (err, data, response) {
-            expect(data.source).to.equal(newStory.source);
-            done();
-        });
+    it('should return a story with correct source', function () {
+        expect(call_data.source).to.equal(newStory.source);
     });
 
-    it('should return a story with correct userId', function (done) {
-        client.getStory(storyId, function (err, data, response) {
-            expect(data.userId).to.equal(newStory.userId);
-            done();
-        });
+    it('should return a story with correct userId', function () {
+        expect(call_data.userId).to.equal(newStory.userId);
     });
 
-    it('should return a story with correct size', function (done) {
-        client.getStory(storyId, function (err, data, response) {
-            expect(data.size).to.equal(newStory.size);
-            done();
-        });
+    it('should return a story with correct size', function () {
+        expect(call_data.size).to.equal(newStory.size);
     });
 
-    it('should return a story with correct url', function (done) {
-        client.getStory(storyId, function (err, data, response) {
-            expect(data.url).to.equal(newStory.url);
-            done();
-        });
+    it('should return a story with correct url', function () {
+        expect(call_data.url).to.equal(newStory.url);
     });
 
 });
 
 describe('testing get all stories', function () {
-    before(function () {
+    var call_response;
+    var call_data;
+    var call_err;
+    before(function (done) {
         this.timeout(2500);
         client.setBaseUrl('http://api-test.asyncvoter.agileventures.org');
-    });
-
-    it('should return a code 200', function (done) {
         client.getAllStories(function (err, data, response) {
-            expect(response.statusCode).to.equal(200);
+            call_response = response;
+            call_data = data;
+            call_err = err;
             done();
         });
     });
 
-    it('should return a null error', function (done) {
-        client.getAllStories(function (err, data, response) {
-            expect(err).to.equal(null);
-            done();
-        });
+    it('should return a code 200', function () {
+        expect(call_response.statusCode).to.equal(200);
     });
 
-    it('should return an array', function (done) {
-        client.getAllStories(function (err, data, response) {
-            expect(data).to.be.an('array');
-            done();
-        });
+    it('should return a null error', function () {
+        expect(call_err).to.equal(null);
+
     });
-    it('should return a story object with valid keys', function (done) {
-        client.getAllStories(function (err, data, response) {
-            expect(data[0]).to.have.include.keys('_id', 'updatedAt', 'createdAt', 'name', 'url');
-            done();
-        });
+
+    it('should return an array', function () {
+        expect(call_data).to.be.an('array');
+    });
+    it('should return a story object with valid keys', function () {
+        expect(call_data[0]).to.have.include.keys('_id', 'updatedAt', 'createdAt', 'name', 'url');
     });
 
 });
