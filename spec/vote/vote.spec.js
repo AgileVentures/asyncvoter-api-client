@@ -103,4 +103,5 @@ describe('testing getting all votes for a story', function () {
             size: newVote.size
         });
     });
+
 });

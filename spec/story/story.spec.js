@@ -190,6 +190,7 @@ describe('testing get all stories', function () {
     it('should return an array', function () {
         expect(call_data).to.be.an('array');
     });
+
     it('should return a story object with valid keys', function () {
         expect(call_data[0]).to.have.include.keys('_id', 'updatedAt', 'createdAt', 'name', 'url');
     });
