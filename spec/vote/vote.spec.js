@@ -4,7 +4,7 @@ AsyncVoterApiClient = require('../../client')
 var client = new AsyncVoterApiClient();
 var storyId;
 
-before(function(done) {
+before(function (done) {
     this.timeout(2500);
     var newStory = {
         name: 'Story for testing votes',
@@ -60,6 +60,9 @@ describe('testing creating a vote for a story', function () {
 });
 
 describe('testing getting all votes for a story', function () {
+    var call_response;
+    var call_data;
+    var call_err;
     var newVote = {
         userId: '@test_user1',
         size: '1'
@@ -71,39 +74,33 @@ describe('testing getting all votes for a story', function () {
         client.setBaseUrl('http://api-test.asyncvoter.agileventures.org');
         client.createVote(storyId, newVote, function (err, data, response) {
             newVoteId = data._id;
-            done();
+            client.getVotesForStory(storyId, function (err, data, response) {
+                call_response = response;
+                call_data = data;
+                call_err = err;
+                done();
+            });
         });
     });
 
-    it('should return a code 200', function (done) {
-        client.getVotesForStory(storyId, function (err, data, response) {
-            expect(response.statusCode).to.equal(200);
-            done();
-        });
+    it('should return a code 200', function () {
+        expect(call_response.statusCode).to.equal(200);
     });
 
-    it('should return a null error', function (done) {
-        client.getVotesForStory(storyId, function (err, data, response) {
-            expect(err).to.equal(null);
-            done();
-        });
+    it('should return a null error', function () {
+        expect(call_err).to.equal(null);
     });
 
-    it('should return an array', function (done) {
-        client.getVotesForStory(storyId, function (err, data, response) {
-            expect(data).to.be.an('array');
-            done();
-        });
+    it('should return an array', function () {
+        expect(call_data).to.be.an('array');
     });
 
-    it('should return at least one vote with a valid _id, story, userId and size', function (done) {
-        client.getVotesForStory(storyId, function (err, data, response) {
-            expect(data[data.length - 1]).to.deep.include({
-                _id: newVoteId,
-                story: storyId,
-                userId: newVote.userId,
-                size: newVote.size });
-            done();
+    it('should return at least one vote with a valid _id, story, userId and size', function () {
+        expect(call_data[call_data.length - 1]).to.deep.include({
+            _id: newVoteId,
+            story: storyId,
+            userId: newVote.userId,
+            size: newVote.size
         });
     });
 });
