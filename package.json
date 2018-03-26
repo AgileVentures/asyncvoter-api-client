@@ -4,7 +4,7 @@
   "description": "Client to work with Agile Ventures AsyncVoter API service",
   "main": "client.js",
   "scripts": {
-    "test": "mocha spec.js"
+    "test": "mocha './spec/**/*.spec.js'"
   },
   "repository": {
     "type": "git",
