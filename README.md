@@ -132,14 +132,13 @@ Output:
   _id: '5a1c556c9904c700a3d3628e' }
   ```
 
- **Updating a story**
+ **Updating a story's size**
 
  ```javascript
 var storyId = '5a1c556c9904c700a3d3628e';
+var size = 3; // or var size = '3' (size can also be a string var)
 
-var story = {size: '3'};
-
-client.updateStory(storyId, story, function(err, data, response) {
+client.updateStorySize(storyId, size, function(err, data, response) {
   if (err) {
     console.log(err.message);
   } else {

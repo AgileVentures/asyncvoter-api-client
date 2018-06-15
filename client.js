@@ -55,11 +55,11 @@ var client = function () {
     });
   };
 
-  this.updateStory = function (storyId,fields, callback) {
+  this.updateStorySize = function (storyId, size, callback) {
     var url = this.baseUrl + '/stories';
     url = url + '/' + storyId;
     var args = {
-      data: fields,
+      data: {"size": size.toString()},
       headers: { "Content-Type": "application/json" }
     };
     this.restClient.put(url, args, function (data, response) {

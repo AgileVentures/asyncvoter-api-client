@@ -69,7 +69,7 @@ describe('testing creating a new voter story', function () {
     });
 });
 
-describe('testing updating a voter story', function () {
+describe('testing updating a voter story\'s size', function () {
     var storyId;
     var newStory = {
         name: 'Update API Client',
@@ -87,8 +87,7 @@ describe('testing updating a voter story', function () {
     });
 
     it('should update story with a size and return a code 200', function (done) {
-        var updates = { size: '1' };
-        client.updateStory(storyId, updates, function (err, data, response) {
+        client.updateStorySize(storyId, '1', function (err, data, response) {
             expect(response.statusCode).to.equal(200);
             expect(data.size).to.equal('1');
             done();
@@ -96,8 +95,7 @@ describe('testing updating a voter story', function () {
     });
 
     it('should change the existing size of a story and return a code 200', function (done) {
-        var updates = { size: '3' };
-        client.updateStory(storyId, updates, function (err, data, response) {
+        client.updateStorySize(storyId, 3, function (err, data, response) {
             expect(response.statusCode).to.equal(200);
             expect(data.size).to.equal('3');
             done();
@@ -192,7 +190,7 @@ describe('testing get all stories', function () {
     });
 
     it('should return a story object with valid keys', function () {
-        expect(call_data[0]).to.have.include.keys('_id', 'updatedAt', 'createdAt', 'name', 'url');
+        expect(call_data[1]).to.have.include.keys('_id', '__v', 'updatedAt', 'createdAt', 'name', 'url', 'source');
     });
 
 });
